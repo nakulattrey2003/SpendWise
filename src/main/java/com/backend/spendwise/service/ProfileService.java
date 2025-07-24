@@ -17,6 +17,9 @@ public class ProfileService {
     @Autowired
     private ProfileRepository profileRepository;
 
+    @Autowired
+    private EmailService emailService;
+
     public ProfileDTO registerProfile(ProfileDTO profileDTO) {
         ProfileEntity newProfile = toEntity(profileDTO);
 
@@ -24,6 +27,14 @@ public class ProfileService {
         newProfile.setActivationToken(UUID.randomUUID().toString()); // Clear activation token if not needed
 
         newProfile = profileRepository.save(newProfile);
+
+        String activationLink = "http://localhost:8080/profile/activate/" + newProfile.getActivationToken();
+        String emailSubject = "Activate your SpendWise account";
+        String emailBody = "Welcome to SpendWise! Please activate your account by clicking the link below:\n" + activationLink;
+
+        // Send activation email
+        System.out.println("Sending activation email to: " + newProfile.getEmail());
+        emailService.sendEmail(newProfile.getEmail(), emailSubject, emailBody);
 
         return toDTO(newProfile);
     }
