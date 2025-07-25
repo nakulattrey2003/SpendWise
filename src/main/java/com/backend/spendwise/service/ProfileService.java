@@ -3,16 +3,19 @@ package com.backend.spendwise.service;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.backend.spendwise.dto.ProfileDTO;
 import com.backend.spendwise.entity.ProfileEntity;
 import com.backend.spendwise.repository.ProfileRepository;
 
-import jakarta.annotation.PostConstruct;
-
+// This service handles profile-related operations such as registration and conversion between DTO and entity.
 @Service
-public class ProfileService {
+public class ProfileService 
+{
 
     @Autowired
     private ProfileRepository profileRepository;
@@ -20,7 +23,11 @@ public class ProfileService {
     @Autowired
     private EmailService emailService;
 
-    public ProfileDTO registerProfile(ProfileDTO profileDTO) {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public ProfileDTO registerProfile(ProfileDTO profileDTO) 
+    {
         ProfileEntity newProfile = toEntity(profileDTO);
 
         newProfile.setIsActive(true); // Set default active status
@@ -39,18 +46,21 @@ public class ProfileService {
         return toDTO(newProfile);
     }
     
-    public ProfileEntity toEntity(ProfileDTO profileDTO) {
+    public ProfileEntity toEntity(ProfileDTO profileDTO) 
+    {
         return ProfileEntity.builder()
                 .id(profileDTO.getId())
                 .fullName(profileDTO.getFullName())
                 .email(profileDTO.getEmail())
+                .password(passwordEncoder.encode(profileDTO.getPassword())) // Encode password
                 .profileImageUrl(profileDTO.getProfileImageUrl())
                 .createdAt(profileDTO.getCreatedAt())
                 .updatedAt(profileDTO.getUpdatedAt())
                 .build();
     }
 
-    public ProfileDTO toDTO(ProfileEntity profileEntity) {
+    public ProfileDTO toDTO(ProfileEntity profileEntity) 
+    {
         return ProfileDTO.builder()
                 .id(profileEntity.getId())
                 .fullName(profileEntity.getFullName())
@@ -61,8 +71,46 @@ public class ProfileService {
                 .build();
     }
 
-    @PostConstruct
-    public void init() {
-        System.out.println("🔥🔥🔥 INJECTED: " + profileRepository + " 🔥🔥🔥");
+    public Boolean isAccountActive(String email)
+    {
+        ProfileEntity profile = profileRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Profile not found with email: " + email));
+        return profile.getIsActive(); 
     }
+
+    public ProfileEntity getCurrentProfile() 
+    {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        System.out.println("Current authentication: " + authentication);
+
+        if (authentication == null || !authentication.isAuthenticated()) {
+            throw new RuntimeException("No authenticated user found");
+        }
+
+        String email = authentication.getName(); // Get the email from the authentication object
+        return profileRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Profile not found for email: " + email));
+    }
+
+    public ProfileDTO getPublicProfile(String email) 
+    {
+        ProfileEntity currentUser = null;
+        if(email == null || email.isEmpty()) {
+            currentUser = getCurrentProfile();
+        } else {
+            currentUser = profileRepository.findByEmail(email)
+                    .orElseThrow(() -> new RuntimeException("Profile not found for email: " + email));
+        }
+
+        return ProfileDTO.builder()
+                .id(currentUser.getId())
+                .fullName(currentUser.getFullName())
+                .email(currentUser.getEmail())
+                .profileImageUrl(currentUser.getProfileImageUrl())
+                .createdAt(currentUser.getCreatedAt())
+                .updatedAt(currentUser.getUpdatedAt())
+                .build();
+    }
+                                        
 }

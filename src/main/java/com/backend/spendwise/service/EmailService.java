@@ -6,6 +6,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+
+// This service handles email sending functionality, such as sending activation emails to users.
 @Service
 public class EmailService 
 {
