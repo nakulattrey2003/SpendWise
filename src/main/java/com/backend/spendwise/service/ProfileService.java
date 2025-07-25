@@ -1,13 +1,17 @@
 package com.backend.spendwise.service;
 
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.backend.spendwise.dto.AuthDTO;
 import com.backend.spendwise.dto.ProfileDTO;
 import com.backend.spendwise.entity.ProfileEntity;
 import com.backend.spendwise.repository.ProfileRepository;
@@ -25,6 +29,9 @@ public class ProfileService
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     public ProfileDTO registerProfile(ProfileDTO profileDTO) 
     {
@@ -111,6 +118,21 @@ public class ProfileService
                 .createdAt(currentUser.getCreatedAt())
                 .updatedAt(currentUser.getUpdatedAt())
                 .build();
+    }
+
+    public Map<String, Object> authenticationAndGenerateToken(AuthDTO authDTO) 
+    {
+        try 
+        {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authDTO.getEmail(), authDTO.getPassword()));
+            return Map.of(
+                "token", "JWT TOKEN", // Generate a dummy token for now
+                "user", getPublicProfile(authDTO.getEmail())
+            );
+        } catch (Exception e) 
+        {
+            return Map.of("message", "Authentication failed: " + e.getMessage());
+        }
     }
                                         
 }

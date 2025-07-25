@@ -40,3 +40,4 @@ This generated password is for development use only. Your security configuration
 2025-07-26T01:38:11.344+05:30  INFO 9356 --- [spendwise] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-07-26T01:38:11.346+05:30  INFO 9356 --- [spendwise] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2025-07-26T01:50:08.902+05:30  WARN 9356 --- [spendwise] [http-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2025-07-26T03:06:45.441+05:30  WARN 9356 --- [spendwise] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=9m38s353ms261µs400ns).
