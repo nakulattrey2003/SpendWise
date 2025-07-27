@@ -20,6 +20,16 @@ public class JwtUtil
 
     private static final SecretKey SECRET_KEY = Keys.hmacShaKeyFor(SECRET_BYTES);
 
+    public boolean isTokenExpired(String token) {
+        Date expirationDate = Jwts.parserBuilder()
+                .setSigningKey(SECRET_KEY)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getExpiration();
+        return expirationDate.before(new Date());
+    }
+
     public String generateToken(String username) {
         return Jwts.builder()
                 .setSubject(username)
@@ -27,5 +37,19 @@ public class JwtUtil
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
                 .compact();
+    }
+
+    public String extractUsername(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(SECRET_KEY)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
+    }
+
+    public boolean validateToken(String token, String username) {
+        String extractedUsername = extractUsername(token);
+        return (extractedUsername.equals(username) && !isTokenExpired(token));
     }
 }

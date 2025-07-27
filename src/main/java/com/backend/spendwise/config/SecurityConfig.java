@@ -5,19 +5,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import com.backend.spendwise.security.JwtRequestFilter;
 import com.backend.spendwise.service.AppUserDetailService;
 import lombok.RequiredArgsConstructor;
 
@@ -26,8 +26,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfig 
 {
+
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
     @Autowired
     private AppUserDetailService appUserDetailService;
+
 
     // This class configures the security settings for the application. and this is only one time activity
     @Bean
@@ -39,7 +43,8 @@ public class SecurityConfig
                 .requestMatchers("/health", "/status", "/register", "/login").permitAll()
                 .anyRequest().authenticated()
             )
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
             return httpSecurity.build();
     }
 
@@ -67,13 +72,12 @@ public class SecurityConfig
 
     // This bean provides an AuthenticationManager for authenticating users.
     @Bean
-    public DaoAuthenticationProvider doaAuthenticationProvider() throws Exception 
+    public DaoAuthenticationProvider daoAuthenticationProvider()
     {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(appUserDetailService);
         authenticationProvider.setPasswordEncoder(passwordEncoder());
 
-        System.out.println("AuthenticationProvider inside DaoAuthenticationProvider: " + authenticationProvider);
         return authenticationProvider;
     }
 }

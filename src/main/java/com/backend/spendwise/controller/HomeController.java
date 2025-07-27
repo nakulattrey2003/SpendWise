@@ -2,16 +2,57 @@ package com.backend.spendwise.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.backend.spendwise.dto.ProfileDTO;
+import com.backend.spendwise.entity.ProfileEntity;
+import com.backend.spendwise.repository.ProfileRepository;
+import com.backend.spendwise.service.ProfileService;
+import com.backend.spendwise.util.JwtUtil;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
-@RequestMapping({"/status", "/health"})
-public class HomeController {
+@RequestMapping()
+public class HomeController 
+{
+    @Autowired
+    private ProfileRepository profileRepository;
 
-    @GetMapping
-    public String HealthCheck() {
+    @GetMapping({"/status", "/health"})
+    public String HealthCheck() 
+    {
         return "Application is running successfully!!!";
-    // Add methods to handle requests here
-    }   
+    }
+    
+    
+    @GetMapping({"/profile", "/myProfile", "/me"})
+    public ResponseEntity<Optional<ProfileEntity>> myProfile() 
+    // public String myProfile() 
+    {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        
+        if (authentication == null || !authentication.isAuthenticated()) 
+        {
+            return ResponseEntity.status(401).body(null); // Unauthorized
+        }
+        
+        String email = authentication.getName();
+        Optional<ProfileEntity> profile = profileRepository.findByEmail(email);
+        
+        if (profile == null) 
+        {
+            return ResponseEntity.status(404).body(null); // Not Found
+        }
+        
+        return ResponseEntity.ok(profile);
+    }
 }

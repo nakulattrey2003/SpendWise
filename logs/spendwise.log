@@ -603,3 +603,87 @@ Consider defining a bean of type 'com.backend.spendwise.util.JwtUtil' in your co
 2025-07-27T18:45:32.691+05:30  INFO 6244 --- [spendwise] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2025-07-27T18:45:32.692+05:30  INFO 6244 --- [spendwise] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-07-27T18:45:32.693+05:30  INFO 6244 --- [spendwise] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-07-27T19:08:46.824+05:30  WARN 6244 --- [spendwise] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8m19s15ms734탎200ns).
+2025-07-27T19:12:33.121+05:30  WARN 6244 --- [spendwise] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m46s298ms348탎700ns).
+2025-07-27T19:40:28.564+05:30  WARN 6244 --- [spendwise] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=55s25ms512탎100ns).
+2025-07-27T20:43:34.450+05:30  WARN 6244 --- [spendwise] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=19m3s700ms594탎600ns).
+2025-07-27T21:32:10.929+05:30  INFO 6244 --- [spendwise] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-27T21:32:11.045+05:30  INFO 6244 --- [spendwise] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-27T21:32:11.059+05:30  INFO 6244 --- [spendwise] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-27T21:32:11.069+05:30  INFO 6244 --- [spendwise] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-07-27T21:32:11.080+05:30  INFO 6244 --- [spendwise] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-07-27T21:32:18.665+05:30  INFO 19084 --- [spendwise] [main] c.b.spendwise.SpendwiseApplication       : Starting SpendwiseApplication using Java 17.0.12 with PID 19084 (D:\Nakul\Web Development\Projects\SpendWise\target\classes started by HP in D:\Nakul\Web Development\Projects\SpendWise)
+2025-07-27T21:32:18.673+05:30  INFO 19084 --- [spendwise] [main] c.b.spendwise.SpendwiseApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-07-27T21:32:20.894+05:30  INFO 19084 --- [spendwise] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-27T21:32:21.027+05:30  INFO 19084 --- [spendwise] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 114 ms. Found 1 JPA repository interface.
+2025-07-27T21:32:22.400+05:30  INFO 19084 --- [spendwise] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-27T21:32:22.429+05:30  INFO 19084 --- [spendwise] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-27T21:32:22.430+05:30  INFO 19084 --- [spendwise] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-07-27T21:32:22.517+05:30  INFO 19084 --- [spendwise] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-27T21:32:22.519+05:30  INFO 19084 --- [spendwise] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3719 ms
+2025-07-27T21:32:22.951+05:30  INFO 19084 --- [spendwise] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-27T21:32:23.096+05:30  INFO 19084 --- [spendwise] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-07-27T21:32:23.181+05:30  INFO 19084 --- [spendwise] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-27T21:32:23.861+05:30  INFO 19084 --- [spendwise] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-27T21:32:23.934+05:30  INFO 19084 --- [spendwise] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-07-27T21:32:24.509+05:30  INFO 19084 --- [spendwise] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@73a116d
+2025-07-27T21:32:24.512+05:30  INFO 19084 --- [spendwise] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-07-27T21:32:24.643+05:30  INFO 19084 --- [spendwise] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.41
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-27T21:32:26.043+05:30  INFO 19084 --- [spendwise] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-27T21:32:26.121+05:30  INFO 19084 --- [spendwise] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-27T21:32:26.778+05:30  WARN 19084 --- [spendwise] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-27T21:32:26.847+05:30  INFO 19084 --- [spendwise] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name daoAuthenticationProvider
+2025-07-27T21:32:26.857+05:30  WARN 19084 --- [spendwise] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-07-27T21:32:27.476+05:30  INFO 19084 --- [spendwise] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-07-27T21:32:28.142+05:30  INFO 19084 --- [spendwise] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-27T21:32:28.170+05:30  INFO 19084 --- [spendwise] [main] c.b.spendwise.SpendwiseApplication       : Started SpendwiseApplication in 10.25 seconds (process running for 11.117)
+2025-07-27T21:32:30.122+05:30  INFO 19084 --- [spendwise] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-27T21:32:30.123+05:30  INFO 19084 --- [spendwise] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-07-27T21:32:30.125+05:30  INFO 19084 --- [spendwise] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-07-27T21:38:00.670+05:30  INFO 19084 --- [spendwise] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-27T21:38:00.774+05:30  INFO 19084 --- [spendwise] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-27T21:38:00.783+05:30  INFO 19084 --- [spendwise] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-27T21:38:00.790+05:30  INFO 19084 --- [spendwise] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-07-27T21:38:00.801+05:30  INFO 19084 --- [spendwise] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-07-27T21:38:05.556+05:30  INFO 14876 --- [spendwise] [main] c.b.spendwise.SpendwiseApplication       : Starting SpendwiseApplication using Java 17.0.12 with PID 14876 (D:\Nakul\Web Development\Projects\SpendWise\target\classes started by HP in D:\Nakul\Web Development\Projects\SpendWise)
+2025-07-27T21:38:05.559+05:30  INFO 14876 --- [spendwise] [main] c.b.spendwise.SpendwiseApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-07-27T21:38:07.078+05:30  INFO 14876 --- [spendwise] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-27T21:38:07.205+05:30  INFO 14876 --- [spendwise] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 108 ms. Found 1 JPA repository interface.
+2025-07-27T21:38:08.020+05:30  INFO 14876 --- [spendwise] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-27T21:38:08.049+05:30  INFO 14876 --- [spendwise] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-27T21:38:08.050+05:30  INFO 14876 --- [spendwise] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-07-27T21:38:08.131+05:30  INFO 14876 --- [spendwise] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-27T21:38:08.132+05:30  INFO 14876 --- [spendwise] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2491 ms
+2025-07-27T21:38:08.480+05:30  INFO 14876 --- [spendwise] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-27T21:38:08.551+05:30  INFO 14876 --- [spendwise] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-07-27T21:38:08.627+05:30  INFO 14876 --- [spendwise] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-27T21:38:08.990+05:30  INFO 14876 --- [spendwise] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-27T21:38:09.051+05:30  INFO 14876 --- [spendwise] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-07-27T21:38:09.502+05:30  INFO 14876 --- [spendwise] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6d6712b7
+2025-07-27T21:38:09.505+05:30  INFO 14876 --- [spendwise] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-07-27T21:38:09.644+05:30  INFO 14876 --- [spendwise] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.41
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-27T21:38:10.789+05:30  INFO 14876 --- [spendwise] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-27T21:38:10.853+05:30  INFO 14876 --- [spendwise] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-27T21:38:11.375+05:30  WARN 14876 --- [spendwise] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-27T21:38:11.426+05:30  INFO 14876 --- [spendwise] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name daoAuthenticationProvider
+2025-07-27T21:38:11.427+05:30  WARN 14876 --- [spendwise] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-07-27T21:38:11.923+05:30  INFO 14876 --- [spendwise] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-07-27T21:38:12.473+05:30  INFO 14876 --- [spendwise] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-27T21:38:12.496+05:30  INFO 14876 --- [spendwise] [main] c.b.spendwise.SpendwiseApplication       : Started SpendwiseApplication in 7.673 seconds (process running for 8.363)
+2025-07-27T21:38:19.063+05:30  INFO 14876 --- [spendwise] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-27T21:38:19.064+05:30  INFO 14876 --- [spendwise] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-07-27T21:38:19.068+05:30  INFO 14876 --- [spendwise] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
