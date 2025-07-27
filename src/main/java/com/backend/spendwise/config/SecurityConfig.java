@@ -2,8 +2,12 @@ package com.backend.spendwise.config;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -14,13 +18,17 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
+import com.backend.spendwise.service.AppUserDetailService;
 import lombok.RequiredArgsConstructor;
 
 
 @Configuration
 @RequiredArgsConstructor
-public class SecurityConfig {
+public class SecurityConfig 
+{
+    @Autowired
+    private AppUserDetailService appUserDetailService;
+
     // This class configures the security settings for the application. and this is only one time activity
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception 
@@ -55,5 +63,17 @@ public class SecurityConfig {
 
         return source;
     
+    }
+
+    // This bean provides an AuthenticationManager for authenticating users.
+    @Bean
+    public DaoAuthenticationProvider doaAuthenticationProvider() throws Exception 
+    {
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(appUserDetailService);
+        authenticationProvider.setPasswordEncoder(passwordEncoder());
+
+        System.out.println("AuthenticationProvider inside DaoAuthenticationProvider: " + authenticationProvider);
+        return authenticationProvider;
     }
 }

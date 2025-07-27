@@ -4,8 +4,11 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +18,7 @@ import com.backend.spendwise.dto.AuthDTO;
 import com.backend.spendwise.dto.ProfileDTO;
 import com.backend.spendwise.entity.ProfileEntity;
 import com.backend.spendwise.repository.ProfileRepository;
+import com.backend.spendwise.util.JwtUtil;
 
 // This service handles profile-related operations such as registration and conversion between DTO and entity.
 @Service
@@ -31,7 +35,10 @@ public class ProfileService
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private JwtUtil jwtUtil;
+
+    @Autowired
+    private DaoAuthenticationProvider daoAuthenticationProvider;
 
     public ProfileDTO registerProfile(ProfileDTO profileDTO) 
     {
@@ -82,6 +89,8 @@ public class ProfileService
     {
         ProfileEntity profile = profileRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Profile not found with email: " + email));
+
+
         return profile.getIsActive(); 
     }
 
@@ -113,6 +122,7 @@ public class ProfileService
         return ProfileDTO.builder()
                 .id(currentUser.getId())
                 .fullName(currentUser.getFullName())
+                .password(currentUser.getPassword()) // remove password if not needed to show in public profile
                 .email(currentUser.getEmail())
                 .profileImageUrl(currentUser.getProfileImageUrl())
                 .createdAt(currentUser.getCreatedAt())
@@ -124,9 +134,14 @@ public class ProfileService
     {
         try 
         {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authDTO.getEmail(), authDTO.getPassword()));
+            Authentication authenticationToken = new UsernamePasswordAuthenticationToken(authDTO.getEmail(), authDTO.getPassword());
+
+            daoAuthenticationProvider.authenticate(authenticationToken); // when we call this method it internally calls loadUserByUsername method of AppUserDetailService
+
+            String token = jwtUtil.generateToken(authDTO.getEmail());
+
             return Map.of(
-                "token", "JWT TOKEN", // Generate a dummy token for now
+                "token", token,
                 "user", getPublicProfile(authDTO.getEmail())
             );
         } catch (Exception e) 
