@@ -9,6 +9,8 @@ import com.backend.spendwise.entity.ProfileEntity;
 
 @Repository
 public interface ProfileRepository extends JpaRepository<ProfileEntity, Long> {
+
+     // sql query = "SELECT * FROM profiles WHERE email = ?1"
      Optional<ProfileEntity> findByEmail(String email);
     
 }
