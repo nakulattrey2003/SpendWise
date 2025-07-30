@@ -101,7 +101,7 @@ public class ExpenseService
         return expenseRepository.getTotalExpensesByProfileId(profileId);
     }
 
-    // helper method to convert ExpenseDTO to ExpenseEntity
+    // helper methods to convert ExpenseDTO to ExpenseEntity and vice versa
     private ExpenseEntity toEntity(ExpenseDTO expenseDTO, ProfileEntity profileEntity, CategoryEntity categoryEntity) 
     {
         return ExpenseEntity.builder()
