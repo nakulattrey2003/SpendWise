@@ -16,9 +16,10 @@ import lombok.NoArgsConstructor;
 public class ExpenseDTO 
 {
     private Long id;
-    private String description;
     private String name;
     private String icon;
+    private Long categoryId;
+    private String categoryName;
     private LocalDate date;
     private BigDecimal amount;
     private LocalDateTime createdAt;

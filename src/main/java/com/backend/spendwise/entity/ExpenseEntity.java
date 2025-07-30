@@ -35,7 +35,6 @@ public class ExpenseEntity
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String description;
     private String name;
     private String icon;
     private LocalDate date;
@@ -50,7 +49,7 @@ public class ExpenseEntity
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false)
-    private CategoryEntity categoryEntity;
+    private CategoryEntity category;
 
     
     @ManyToOne(fetch = FetchType.LAZY)
