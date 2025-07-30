@@ -3,7 +3,6 @@ package com.backend.spendwise.service;
 import java.util.Map;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.Authentication;
@@ -17,25 +16,18 @@ import com.backend.spendwise.entity.ProfileEntity;
 import com.backend.spendwise.repository.ProfileRepository;
 import com.backend.spendwise.util.JwtUtil;
 
+import lombok.RequiredArgsConstructor;
+
 // This service handles profile-related operations such as registration and conversion between DTO and entity.
 @Service
+@RequiredArgsConstructor
 public class ProfileService 
 {
-
-    @Autowired
-    private ProfileRepository profileRepository;
-
-    @Autowired
-    private EmailService emailService;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private JwtUtil jwtUtil;
-
-    @Autowired
-    private DaoAuthenticationProvider daoAuthenticationProvider;
+    private final ProfileRepository profileRepository;
+    private final EmailService emailService;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
+    private final DaoAuthenticationProvider daoAuthenticationProvider;
 
     public ProfileDTO registerProfile(ProfileDTO profileDTO) 
     {

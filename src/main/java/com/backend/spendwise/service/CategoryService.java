@@ -3,7 +3,6 @@ package com.backend.spendwise.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -13,14 +12,14 @@ import com.backend.spendwise.entity.CategoryEntity;
 import com.backend.spendwise.entity.ProfileEntity;
 import com.backend.spendwise.repository.CategoryRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class CategoryService 
 {
-    @Autowired
-    private CategoryRepository categoryRepository;
-
-    @Autowired
-    private ProfileService profileService;
+    private final CategoryRepository categoryRepository;
+    private final ProfileService profileService;
 
     public CategoryDTO saveCategory(CategoryDTO categoryDTO) 
     {

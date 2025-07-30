@@ -2,7 +2,6 @@ package com.backend.spendwise.controller;
 
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,10 +12,12 @@ import com.backend.spendwise.dto.AuthDTO;
 import com.backend.spendwise.dto.ProfileDTO;
 import com.backend.spendwise.service.ProfileService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
+@RequiredArgsConstructor
 public class ProfileController 
 {
-    @Autowired
     private ProfileService profileService;
 
     @PostMapping("/register")

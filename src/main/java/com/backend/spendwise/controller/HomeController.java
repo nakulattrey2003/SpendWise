@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.backend.spendwise.entity.ProfileEntity;
 import com.backend.spendwise.repository.ProfileRepository;
 
+import lombok.RequiredArgsConstructor;
+
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,11 +17,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping()
 public class HomeController 
 {
-    @Autowired
-    private ProfileRepository profileRepository;
+    private final ProfileRepository profileRepository;
 
     @GetMapping({"/status", "/health"})
     public String HealthCheck() 

@@ -2,7 +2,6 @@ package com.backend.spendwise.config;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -26,11 +25,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfig 
 {
-
-    @Autowired
-    private JwtRequestFilter jwtRequestFilter;
-    @Autowired
-    private AppUserDetailService appUserDetailService;
+    private final JwtRequestFilter jwtRequestFilter;
+    private final AppUserDetailService appUserDetailService;
 
 
     // This class configures the security settings for the application. and this is only one time activity

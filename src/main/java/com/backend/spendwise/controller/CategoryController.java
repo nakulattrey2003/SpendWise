@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,8 +27,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequestMapping("/categories")
 public class CategoryController 
 {
-    @Autowired
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
     
     @PostMapping("/createCategory")
     public ResponseEntity<CategoryDTO> saveCategory(@RequestBody CategoryDTO categoryDTO) 
