@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.backend.spendwise.dto.IncomeDTO;
@@ -92,6 +93,14 @@ public class IncomeService {
     public BigDecimal getTotalIncome() {
         Long profileId = profileService.getCurrentProfile().getId();
         return incomeRepository.getTotalIncomeByProfileId(profileId);
+    }
+
+    public List<IncomeDTO> filterIncomes(LocalDate startDate, LocalDate endDate, String keyword, Sort sort) 
+    {
+        ProfileEntity profileEntity = profileService.getCurrentProfile();
+        List<IncomeEntity> list = incomeRepository.findAllByProfileIdAndDateBetweenAndNameContainingIgnoreCase(profileEntity.getId(), startDate, endDate, keyword, sort);
+
+        return list.stream().map(this::toDTO).toList();
     }
 
     // helper methods to convert DTO to Entity and vice versa

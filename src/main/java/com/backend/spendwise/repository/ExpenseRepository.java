@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -34,5 +35,7 @@ public interface ExpenseRepository extends JpaRepository<ExpenseEntity, Long>
     @Query("SELECT COALESCE(SUM(e.amount), 0) FROM ExpenseEntity e WHERE e.profile.id = :profileId") // this will give us the total expenses for a profile 
     BigDecimal getTotalExpensesByProfileId(@Param("profileId") Long profileId);
 
+    // sql query = // SELECT * FROM expenses WHERE profile_id = ?1 AND date BETWEEN ?2 AND ?3 AND name LIKE %?4%
+    List<ExpenseEntity> findAllByProfileIdAndDateBetweenAndNameContainingIgnoreCase(Long profileId, LocalDate startDate, LocalDate endDate, String keyword, Sort sort);
 
 }

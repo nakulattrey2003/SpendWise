@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.backend.spendwise.dto.ExpenseDTO;
@@ -100,6 +101,15 @@ public class ExpenseService
         Long profileId = profileService.getCurrentProfile().getId();
         return expenseRepository.getTotalExpensesByProfileId(profileId);
     }
+
+    public List<ExpenseDTO> filterExpenses(LocalDate startDate, LocalDate endDate, String keyword, Sort sort) 
+    {
+        ProfileEntity profileEntity = profileService.getCurrentProfile();
+        List<ExpenseEntity> list = expenseRepository.findAllByProfileIdAndDateBetweenAndNameContainingIgnoreCase(profileEntity.getId(), startDate, endDate, keyword, sort);
+
+        return list.stream().map(this::toDTO).toList();
+    }
+
 
     // helper methods to convert ExpenseDTO to ExpenseEntity and vice versa
     private ExpenseEntity toEntity(ExpenseDTO expenseDTO, ProfileEntity profileEntity, CategoryEntity categoryEntity) 
