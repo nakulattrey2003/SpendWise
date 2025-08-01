@@ -38,4 +38,6 @@ public interface ExpenseRepository extends JpaRepository<ExpenseEntity, Long>
     // sql query = // SELECT * FROM expenses WHERE profile_id = ?1 AND date BETWEEN ?2 AND ?3 AND name LIKE %?4%
     List<ExpenseEntity> findAllByProfileIdAndDateBetweenAndNameContainingIgnoreCase(Long profileId, LocalDate startDate, LocalDate endDate, String keyword, Sort sort);
 
+    // sql query = // SELECT * FROM expenses WHERE profile_id = ?1 AND date = ?2
+    List<ExpenseEntity> findByProfileIdAndDate(Long profileId, LocalDate date);
 }

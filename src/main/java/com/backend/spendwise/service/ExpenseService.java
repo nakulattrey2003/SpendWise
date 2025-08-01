@@ -110,6 +110,13 @@ public class ExpenseService
         return list.stream().map(this::toDTO).toList();
     }
 
+    public List<ExpenseDTO> getExpensesByDate(LocalDate date) 
+    {
+        ProfileEntity profileEntity = profileService.getCurrentProfile();
+        List<ExpenseEntity> expenses = expenseRepository.findByProfileIdAndDate(profileEntity.getId(), date);
+        
+        return expenses.stream().map(this::toDTO).toList();
+    }
 
     // helper methods to convert ExpenseDTO to ExpenseEntity and vice versa
     private ExpenseEntity toEntity(ExpenseDTO expenseDTO, ProfileEntity profileEntity, CategoryEntity categoryEntity) 
