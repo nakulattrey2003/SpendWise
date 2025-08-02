@@ -2,11 +2,14 @@ package com.backend.spendwise.controller;
 
 import java.util.Map;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.backend.spendwise.dto.AuthDTO;
 import com.backend.spendwise.dto.ProfileDTO;
@@ -20,9 +23,19 @@ public class ProfileController
 {
     private final ProfileService profileService;
 
-    @PostMapping("/register")
-    public ResponseEntity<ProfileDTO> registerProfile(@RequestBody ProfileDTO profileDTO) 
+    @PostMapping(value = "/register", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<ProfileDTO> registerProfile(
+            @RequestParam("fullName") String name,
+            @RequestParam("email") String email,
+            @RequestParam("password") String password,
+            @RequestParam(value = "profileImage", required = false) MultipartFile profileImage) 
     {
+        ProfileDTO profileDTO = ProfileDTO.builder()
+                .fullName(name)
+                .email(email)
+                .password(password)
+                .profileImage(profileImage)
+                .build();
         ProfileDTO createdProfile = profileService.registerProfile(profileDTO);
         return ResponseEntity.ok().body(createdProfile);
     }
@@ -52,6 +65,5 @@ public class ProfileController
         }
     }
 
-    
     
 }

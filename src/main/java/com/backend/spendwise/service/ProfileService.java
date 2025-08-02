@@ -1,5 +1,6 @@
 package com.backend.spendwise.service;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
 
@@ -15,22 +16,44 @@ import com.backend.spendwise.dto.ProfileDTO;
 import com.backend.spendwise.entity.ProfileEntity;
 import com.backend.spendwise.repository.ProfileRepository;
 import com.backend.spendwise.util.JwtUtil;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 
 import lombok.RequiredArgsConstructor;
 
 // This service handles profile-related operations such as registration and conversion between DTO and entity.
 @Service
 @RequiredArgsConstructor
-public class ProfileService 
+public class ProfileService
 {
     private final ProfileRepository profileRepository;
-    private final EmailService emailService;
+    // private final EmailService emailService;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
     private final DaoAuthenticationProvider daoAuthenticationProvider;
+    private final Cloudinary cloudinary;
 
     public ProfileDTO registerProfile(ProfileDTO profileDTO) 
     {
+        String imageUrl = null;
+
+        try 
+        {
+            if (profileDTO.getProfileImage() != null && !profileDTO.getProfileImage().isEmpty()) 
+            {
+                Map uploadResult = cloudinary.uploader().upload(profileDTO.getProfileImage().getBytes(), ObjectUtils.asMap("folder", "user_profiles"));
+                imageUrl = uploadResult.get("secure_url").toString();
+                System.out.println("Image uploaded successfully: " + imageUrl);
+            }
+        } 
+        catch (IOException e) 
+        {
+            throw new RuntimeException("Image upload failed: " +  e.getMessage(), e);
+        }
+
+        // Set the uploaded image URL into DTO
+        profileDTO.setProfileImageUrl(imageUrl);
+
         ProfileEntity newProfile = toEntity(profileDTO);
 
         newProfile.setIsActive(true); // Set default active status
@@ -38,13 +61,15 @@ public class ProfileService
 
         newProfile = profileRepository.save(newProfile);
 
-        String activationLink = "http://localhost:8080/profile/activate/" + newProfile.getActivationToken();
-        String emailSubject = "Activate your SpendWise account";
-        String emailBody = "Welcome to SpendWise! Please activate your account by clicking the link below:\n" + activationLink;
 
-        // Send activation email
-        System.out.println("Sending activation email to: " + newProfile.getEmail());
-        emailService.sendEmail(newProfile.getEmail(), emailSubject, emailBody);
+        // Uncomment the following lines if you want to send an activation email
+        // String activationLink = "http://localhost:8080/profile/activate/" + newProfile.getActivationToken();
+        // String emailSubject = "Activate your SpendWise account";
+        // String emailBody = "Welcome to SpendWise! Please activate your account by clicking the link below:\n" + activationLink;
+
+        // // Send activation email
+        // System.out.println("Sending activation email to: " + newProfile.getEmail());
+        // emailService.sendEmail(newProfile.getEmail(), emailSubject, emailBody);
 
         return toDTO(newProfile);
     }
@@ -111,9 +136,7 @@ public class ProfileService
         return ProfileDTO.builder()
                 .id(currentUser.getId())
                 .fullName(currentUser.getFullName())
-                .password(currentUser.getPassword()) // remove password if not needed to show in public profile
                 .email(currentUser.getEmail())
-                .profileImageUrl(currentUser.getProfileImageUrl())
                 .createdAt(currentUser.getCreatedAt())
                 .updatedAt(currentUser.getUpdatedAt())
                 .build();
@@ -138,5 +161,6 @@ public class ProfileService
             return Map.of("message", "Authentication failed: " + e.getMessage());
         }
     }
+
                                         
 }
