@@ -1,5 +1,105 @@
-SpendWise is a user-friendly money management app designed to help you track expenses, set budgets, and gain insights into your spending habits. With intuitive features and a clean interface,
-SpendWise empowers you to make smarter financial decisions and achieve your savings goals.
+# 💰 SpendWise – Smart Personal Finance Manager
+
+[![Java](https://img.shields.io/badge/Java-17-red?style=flat-square&logo=openjdk)](https://www.oracle.com/java/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3-green?style=flat-square&logo=springboot)](https://spring.io/projects/spring-boot)
+[![React](https://img.shields.io/badge/React-18-blue?style=flat-square&logo=react)](https://reactjs.org/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-blue?style=flat-square&logo=mysql)](https://www.mysql.com/)
+[![Cloudinary](https://img.shields.io/badge/Cloudinary-Image%20Hosting-orange?style=flat-square&logo=cloudinary)](https://cloudinary.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
+
+SpendWise is a **full-stack personal finance management app** designed to help you  
+**track expenses, monitor incomes, manage categories, and analyze spending habits**.
+
+Built using:
+- ⚡ **Spring Boot (Java)** backend for speed & scalability
+- 🎨 **React.js** frontend for a smooth user experience
+- ☁️ **Cloudinary** for secure image hosting
+- 📧 **Brevo SMTP** for email notifications
+- 🗃️ **My SQL** for local database storage and,
+- ⛁ **PostgreSQL** for production database storage
+
+---
+
+## ✨ Features
+
+### 👤 **User Management**
+- Secure **JWT authentication**
+- Profile picture upload (**Cloudinary integration**)
+- Email verification & account activation
+- Password encryption using **Spring Security**
+
+### 💸 **Expense Tracking**
+- Add, edit, delete expenses
+- Categorize expenses (Food, Travel, etc.)
+- View monthly totals
+- Latest 5 expenses widget
+
+### 💰 **Income Tracking**
+- Add, edit, delete incomes
+- Categorize incomes (Salary, Investments, etc.)
+- View monthly totals
+- Latest 5 incomes widget
+
+### 🗂 **Categories**
+- Create categories for **income** & **expense**
+- Filter categories by type
+- Edit category details
+
+### 📊 **Analytics & Insights**
+- Dashboard with total income, expenses & balance
+- Filter transactions by **date, keyword, type**
+- Sort transactions by date or custom fields
+
+---
+
+## 🛠 Tech Stack
+
+| Layer           | Technologies |
+|-----------------|--------------|
+| **Frontend**    | React.js, Tailwind CSS, Axios |
+| **Backend**     | Java 17, Spring Boot 3, Spring Security (JWT), Spring Data JPA |
+| **Database**    | MySQL 8.0, PostgreSQL |
+| **Image Hosting** | Cloudinary |
+| **Email Service** | Brevo SMTP |
+| **Others**      | Lombok, Maven, Postman |
+
+---
+
+## 📌 API Overview
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| **POST** | `/register` | Register new account |
+| **POST** | `/login` | Authenticate & get JWT |
+| **POST** | `/expenses/addExpense` | Add new expense |
+| **GET** | `/dashboard` | Get dashboard stats |
+| **POST** | `/filter` | Filter transactions |
+
+Full API route list available in **SpendWise Routes** documentation.
+
+---
+
+## 📷 Screenshots
+
+---
+
+## 🚀 Installation & Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/spendwise.git
+
+# Backend setup
+cd spendwise/backend
+mvn clean install
+mvn spring-boot:run
+
+# Frontend setup
+cd ../frontend
+npm install
+npm run dev
+
+
 
 ### Real-Life Analogy:
 
@@ -44,35 +144,3 @@ Config runs during setup
 
 
 
-Profile:
-
-[
-  {
-    "id": "user-001",
-    "fullName": "Nakul Attrey",
-    "email": "nakul@example.com",
-    "password": "abc123",
-    "profileImageUrl": "https://picsum.photos/seed/1/100/100",
-  },
-  {
-    "id": "user-002",
-    "fullName": "Maximus Meridius",
-    "email": "maximus@gladiator.com",
-    "password": "sword99",
-    "profileImageUrl": "https://picsum.photos/seed/2/100/100",
-  },
-  {
-    "id": "user-003",
-    "fullName": "Sarah Connor",
-    "email": "sarah@resistance.org",
-    "password": "termin8",
-    "profileImageUrl": "https://picsum.photos/seed/3/100/100",
-  },
-  {
-    "id": "user-004",
-    "fullName": "Bruce Wayne",
-    "email": "bruce@wayneenterprises.io",
-    "password": "batman",
-    "profileImageUrl": "https://picsum.photos/seed/4/100/100",
-  }
-]
