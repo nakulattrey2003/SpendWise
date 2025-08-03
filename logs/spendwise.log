@@ -118,3 +118,111 @@
 2025-08-03T19:53:14.433+05:30  INFO 14272 --- [spendwise] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-08-03T19:53:14.437+05:30  INFO 14272 --- [spendwise] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-08-03T19:53:17.376+05:30  INFO 14272 --- [spendwise] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-03T20:53:38.748+05:30  INFO 9920 --- [spendwise] [main] c.b.spendwise.SpendwiseApplication       : Starting SpendwiseApplication using Java 17.0.12 with PID 9920 (D:\Nakul\Web Development\Projects\SpendWise\target\classes started by HP in D:\Nakul\Web Development\Projects\SpendWise)
+2025-08-03T20:53:38.752+05:30  INFO 9920 --- [spendwise] [main] c.b.spendwise.SpendwiseApplication       : The following 1 profile is active: "prod"
+2025-08-03T20:53:41.291+05:30  INFO 9920 --- [spendwise] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-03T20:53:41.496+05:30  INFO 9920 --- [spendwise] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 168 ms. Found 4 JPA repository interfaces.
+2025-08-03T20:53:43.088+05:30  INFO 9920 --- [spendwise] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-03T20:53:43.124+05:30  INFO 9920 --- [spendwise] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-03T20:53:43.125+05:30  INFO 9920 --- [spendwise] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-03T20:53:43.297+05:30  INFO 9920 --- [spendwise] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-03T20:53:43.298+05:30  INFO 9920 --- [spendwise] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4485 ms
+2025-08-03T20:53:44.023+05:30  INFO 9920 --- [spendwise] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-03T20:53:44.209+05:30  INFO 9920 --- [spendwise] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-03T20:53:44.323+05:30  INFO 9920 --- [spendwise] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-03T20:53:45.068+05:30  INFO 9920 --- [spendwise] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-03T20:53:45.180+05:30  INFO 9920 --- [spendwise] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-03T20:53:48.089+05:30  INFO 9920 --- [spendwise] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1af82ba8
+2025-08-03T20:53:48.091+05:30  INFO 9920 --- [spendwise] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-03T20:53:49.550+05:30  INFO 9920 --- [spendwise] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-03T20:53:51.335+05:30  INFO 9920 --- [spendwise] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-03T20:54:00.041+05:30  INFO 9920 --- [spendwise] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-03T20:54:00.855+05:30  INFO 9920 --- [spendwise] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-03T20:54:02.063+05:30  WARN 9920 --- [spendwise] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-03T20:54:02.120+05:30  INFO 9920 --- [spendwise] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name daoAuthenticationProvider
+2025-08-03T20:54:02.121+05:30  WARN 9920 --- [spendwise] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-03T20:54:02.963+05:30  INFO 9920 --- [spendwise] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-08-03T20:54:04.007+05:30  INFO 9920 --- [spendwise] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-03T20:54:04.044+05:30  INFO 9920 --- [spendwise] [main] c.b.spendwise.SpendwiseApplication       : Started SpendwiseApplication in 26.029 seconds (process running for 26.967)
+2025-08-03T20:54:05.413+05:30  INFO 9920 --- [spendwise] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-03T20:54:05.414+05:30  INFO 9920 --- [spendwise] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-08-03T20:54:05.416+05:30  INFO 9920 --- [spendwise] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-08-03T21:02:11.895+05:30  WARN 9920 --- [spendwise] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=53s586ms882µs800ns).
+2025-08-03T21:47:44.052+05:30  INFO 9920 --- [spendwise] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-03T21:47:44.136+05:30  INFO 9920 --- [spendwise] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-08-03T21:47:44.153+05:30  INFO 9920 --- [spendwise] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-03T21:47:44.164+05:30  INFO 9920 --- [spendwise] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-03T21:47:46.695+05:30  INFO 9920 --- [spendwise] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-03T21:47:49.887+05:30  INFO 22456 --- [spendwise] [main] c.b.spendwise.SpendwiseApplication       : Starting SpendwiseApplication using Java 17.0.12 with PID 22456 (D:\Nakul\Web Development\Projects\SpendWise\target\classes started by HP in D:\Nakul\Web Development\Projects\SpendWise)
+2025-08-03T21:47:49.890+05:30  INFO 22456 --- [spendwise] [main] c.b.spendwise.SpendwiseApplication       : The following 1 profile is active: "prod"
+2025-08-03T21:47:51.612+05:30  INFO 22456 --- [spendwise] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-03T21:47:51.697+05:30  INFO 22456 --- [spendwise] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 71 ms. Found 4 JPA repository interfaces.
+2025-08-03T21:47:52.462+05:30  INFO 22456 --- [spendwise] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-03T21:47:52.483+05:30  INFO 22456 --- [spendwise] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-03T21:47:52.484+05:30  INFO 22456 --- [spendwise] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-03T21:47:52.575+05:30  INFO 22456 --- [spendwise] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-03T21:47:52.575+05:30  INFO 22456 --- [spendwise] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2619 ms
+2025-08-03T21:47:52.903+05:30  INFO 22456 --- [spendwise] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-03T21:47:53.018+05:30  INFO 22456 --- [spendwise] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-03T21:47:53.093+05:30  INFO 22456 --- [spendwise] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-03T21:47:53.500+05:30  INFO 22456 --- [spendwise] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-03T21:47:53.567+05:30  INFO 22456 --- [spendwise] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-03T21:47:56.288+05:30  INFO 22456 --- [spendwise] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6614ecca
+2025-08-03T21:47:56.292+05:30  INFO 22456 --- [spendwise] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-03T21:47:57.825+05:30  INFO 22456 --- [spendwise] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-03T21:47:59.653+05:30  INFO 22456 --- [spendwise] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-03T21:48:08.526+05:30  INFO 22456 --- [spendwise] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-03T21:48:09.445+05:30  INFO 22456 --- [spendwise] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-03T21:48:10.995+05:30  WARN 22456 --- [spendwise] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-03T21:48:11.061+05:30  INFO 22456 --- [spendwise] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name daoAuthenticationProvider
+2025-08-03T21:48:11.062+05:30  WARN 22456 --- [spendwise] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-03T21:48:12.025+05:30  INFO 22456 --- [spendwise] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-08-03T21:48:12.903+05:30  INFO 22456 --- [spendwise] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-03T21:48:12.941+05:30  INFO 22456 --- [spendwise] [main] c.b.spendwise.SpendwiseApplication       : Started SpendwiseApplication in 23.612 seconds (process running for 24.237)
+2025-08-03T21:48:46.762+05:30  INFO 22456 --- [spendwise] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-03T21:48:46.763+05:30  INFO 22456 --- [spendwise] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-08-03T21:48:46.768+05:30  INFO 22456 --- [spendwise] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-08-03T21:53:02.647+05:30  INFO 22120 --- [spendwise] [main] c.b.spendwise.SpendwiseApplicationTests  : Starting SpendwiseApplicationTests using Java 17.0.12 with PID 22120 (started by HP in d:\Nakul\Web Development\Projects\SpendWise)
+2025-08-03T21:53:02.650+05:30  INFO 22120 --- [spendwise] [main] c.b.spendwise.SpendwiseApplicationTests  : The following 1 profile is active: "prod"
+2025-08-03T21:53:04.389+05:30  INFO 22120 --- [spendwise] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-03T21:53:04.532+05:30  INFO 22120 --- [spendwise] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 121 ms. Found 4 JPA repository interfaces.
+2025-08-03T21:53:05.506+05:30  INFO 22120 --- [spendwise] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-03T21:53:05.607+05:30  INFO 22120 --- [spendwise] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-03T21:53:05.661+05:30  INFO 22120 --- [spendwise] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-03T21:53:06.180+05:30  INFO 22120 --- [spendwise] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-03T21:53:06.224+05:30  INFO 22120 --- [spendwise] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-03T21:53:09.022+05:30  INFO 22120 --- [spendwise] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2633d09c
+2025-08-03T21:53:09.024+05:30  INFO 22120 --- [spendwise] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-03T21:53:10.494+05:30  INFO 22120 --- [spendwise] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-03T21:53:11.403+05:30  INFO 22120 --- [spendwise] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-03T21:53:20.213+05:30  INFO 22120 --- [spendwise] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-03T21:53:20.704+05:30  INFO 22120 --- [spendwise] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-03T21:53:21.655+05:30  WARN 22120 --- [spendwise] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-03T21:53:21.693+05:30  INFO 22120 --- [spendwise] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name daoAuthenticationProvider
+2025-08-03T21:53:21.694+05:30  WARN 22120 --- [spendwise] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-03T21:53:22.182+05:30  INFO 22120 --- [spendwise] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-08-03T21:53:22.809+05:30  INFO 22120 --- [spendwise] [main] c.b.spendwise.SpendwiseApplicationTests  : Started SpendwiseApplicationTests in 20.64 seconds (process running for 22.363)
+2025-08-03T21:53:23.449+05:30  INFO 22120 --- [spendwise] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-03T21:53:23.452+05:30  INFO 22120 --- [spendwise] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-03T21:53:26.009+05:30  INFO 22120 --- [spendwise] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
