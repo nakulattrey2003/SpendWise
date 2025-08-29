@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.spendwise.dto.ExpenseDTO;
 import com.backend.spendwise.service.ExpenseService;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/expenses")
 public class ExpenseController 

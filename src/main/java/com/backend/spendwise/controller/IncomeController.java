@@ -5,29 +5,49 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.backend.spendwise.dto.IncomeDTO;
 import com.backend.spendwise.service.IncomeService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-@Controller
+@Slf4j
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/incomes")
 public class IncomeController {
 
     private final IncomeService incomeService;
 
+    @GetMapping("/ping")
+public ResponseEntity<String> ping() {
+    log.info("Ping endpoint hit!");
+    return ResponseEntity.ok("pong");
+}
+
     @GetMapping("/getAllIncomesForCurrentMonth")
+    // public ResponseEntity<List<IncomeDTO>> getAllIncomesForCurrentMonth() {
+    //     List<IncomeDTO> incomes = incomeService.readIncomesForCurrentMonth();
+    //     // if (incomes == null || incomes.isEmpty()) {
+    //     //     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    //     // }
+    //     return ResponseEntity.ok(incomes);
+    // }
     public ResponseEntity<List<IncomeDTO>> getAllIncomesForCurrentMonth() {
-        List<IncomeDTO> incomes = incomeService.readIncomesForCurrentMonth();
-        if (incomes == null || incomes.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            log.info("Fetching all incomes for current month...");
+
+            List<IncomeDTO> incomes = incomeService.readIncomesForCurrentMonth();
+
+            if (incomes == null || incomes.isEmpty()) {
+                log.warn("No incomes found for current month");
+                return ResponseEntity.ok().body(incomes); // will return []
+            }
+
+            log.info("Found {} incomes for current month", incomes.size());
+            return ResponseEntity.ok(incomes);
         }
-        return ResponseEntity.ok(incomes);
-    }
 
     @PostMapping("/addIncome")
     public ResponseEntity<IncomeDTO> addIncome(@RequestBody IncomeDTO incomeDTO) {

@@ -1,1 +1,2 @@
 1. application.proerties has exposed secrets, need to deal with it.
+2. start the route path with api/
