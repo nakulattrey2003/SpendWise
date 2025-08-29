@@ -5,6 +5,7 @@ HELP.md
 # !**/src/test/**/target/
 
 spendwise.log
+application.properties
 
 ### STS ###
 .apt_generated

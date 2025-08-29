@@ -3,6 +3,7 @@ package com.backend.spendwise.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.backend.spendwise.dto.ProfileDTO;
 import com.backend.spendwise.entity.ProfileEntity;
 import com.backend.spendwise.repository.ProfileRepository;
 
@@ -14,6 +15,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 @RestController
@@ -51,4 +56,12 @@ public class HomeController
         
         return ResponseEntity.ok(profile);
     }
+
+    // @PutMapping("/updateProfile/{id}")
+    // public ResponseEntity<ProfileDTO> updateProfile(@PathVariable String id, @RequestBody String entity) {
+        
+        
+    //     return entity;
+    // }
+
 }
