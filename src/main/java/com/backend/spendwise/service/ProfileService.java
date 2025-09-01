@@ -2,6 +2,7 @@ package com.backend.spendwise.service;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,7 +28,6 @@ import lombok.RequiredArgsConstructor;
 public class ProfileService
 {
     private final ProfileRepository profileRepository;
-    // private final EmailService emailService;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
     private final DaoAuthenticationProvider daoAuthenticationProvider;
@@ -74,6 +74,51 @@ public class ProfileService
         return toDTO(newProfile);
     }
     
+    public ProfileDTO updateProfile(ProfileDTO profileDTO) {
+    Optional<ProfileEntity> existingProfileOpt = profileRepository.findById(profileDTO.getId());
+
+    if (existingProfileOpt.isEmpty()) {
+        throw new RuntimeException("Profile not found with id " + profileDTO.getId());
+    }
+
+    ProfileEntity existingProfile = existingProfileOpt.get();
+
+    // Conditionally update full name
+    if (profileDTO.getFullName() != null && !profileDTO.getFullName().isEmpty()) {
+        existingProfile.setFullName(profileDTO.getFullName());
+    }
+
+    // Conditionally update email
+    if (profileDTO.getEmail() != null && !profileDTO.getEmail().isEmpty()) {
+        existingProfile.setEmail(profileDTO.getEmail());
+    }
+
+    // Conditionally update password
+    if (profileDTO.getPassword() != null && !profileDTO.getPassword().isEmpty()) {
+        String hashedPassword = passwordEncoder.encode(profileDTO.getPassword());
+        existingProfile.setPassword(hashedPassword);
+    }
+
+    // Conditionally upload new image if provided
+    try {
+        if (profileDTO.getProfileImage() != null && !profileDTO.getProfileImage().isEmpty()) {
+            Map uploadResult = cloudinary.uploader().upload(
+                profileDTO.getProfileImage().getBytes(),
+                ObjectUtils.asMap("folder", "user_profiles")
+            );
+            String imageUrl = uploadResult.get("secure_url").toString();
+            existingProfile.setProfileImageUrl(imageUrl);
+            System.out.println("Image uploaded successfully: " + imageUrl);
+        }
+    } catch (IOException e) {
+        throw new RuntimeException("Image upload failed: " + e.getMessage(), e);
+    }
+
+    ProfileEntity updatedProfile = profileRepository.save(existingProfile);
+
+    return toDTO(updatedProfile);
+}
+
     public ProfileEntity toEntity(ProfileDTO profileDTO) 
     {
         return ProfileEntity.builder()
