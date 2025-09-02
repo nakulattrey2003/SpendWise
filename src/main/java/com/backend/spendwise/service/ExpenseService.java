@@ -29,9 +29,12 @@ public class ExpenseService
         ProfileEntity profileEntity = profileService.getCurrentProfile();
 
         // Get start and end of current month
-        LocalDate now = LocalDate.now(); // like 2023-10-05
-        LocalDate startDate = now.withDayOfMonth(1); // like 2023-10-01
-        LocalDate endDate = now.withDayOfMonth(now.lengthOfMonth()); // like 2023-10-31
+        // LocalDate now = LocalDate.now(); // like 2023-10-05
+        // LocalDate startDate = now.withDayOfMonth(1); // like 2023-10-01
+        // LocalDate endDate = now.withDayOfMonth(now.lengthOfMonth()); // like 2023-10-31
+
+        LocalDate startDate = LocalDate.of(2000, 1, 1);
+        LocalDate endDate = LocalDate.now();
 
         List<ExpenseEntity> expenseList = expenseRepository.findAllByProfileIdAndDateBetween(profileEntity.getId(), startDate, endDate);
 

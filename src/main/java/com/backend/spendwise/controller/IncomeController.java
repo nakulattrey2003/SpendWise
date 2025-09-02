@@ -21,20 +21,7 @@ public class IncomeController {
 
     private final IncomeService incomeService;
 
-    @GetMapping("/ping")
-public ResponseEntity<String> ping() {
-    log.info("Ping endpoint hit!");
-    return ResponseEntity.ok("pong");
-}
-
     @GetMapping("/getAllIncomesForCurrentMonth")
-    // public ResponseEntity<List<IncomeDTO>> getAllIncomesForCurrentMonth() {
-    //     List<IncomeDTO> incomes = incomeService.readIncomesForCurrentMonth();
-    //     // if (incomes == null || incomes.isEmpty()) {
-    //     //     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-    //     // }
-    //     return ResponseEntity.ok(incomes);
-    // }
     public ResponseEntity<List<IncomeDTO>> getAllIncomesForCurrentMonth() {
             log.info("Fetching all incomes for current month...");
 

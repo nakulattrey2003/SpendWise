@@ -10,6 +10,9 @@ import com.backend.spendwise.service.IncomeService;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
@@ -38,8 +41,42 @@ public class FilterController
 
         Sort sort = Sort.by(sortDirection, sortField);
 
-        if(filterDTO.getType().equalsIgnoreCase("income")) return ResponseEntity.ok(incomeService.filterIncomes(startDate, endDate, keyword, sort));
-        else if(filterDTO.getType().equalsIgnoreCase("expense")) return ResponseEntity.ok(expenseService.filterExpenses(startDate, endDate, keyword, sort));
-        else return ResponseEntity.badRequest().body("Invalid type specified");
+        // if(filterDTO.getType().equalsIgnoreCase("income")) return ResponseEntity.ok(incomeService.filterIncomes(startDate, endDate, keyword, sort));
+        // else if(filterDTO.getType().equalsIgnoreCase("expense")) return ResponseEntity.ok(expenseService.filterExpenses(startDate, endDate, keyword, sort));
+        // else return ResponseEntity.badRequest().body("Invalid type specified");
+
+        if (filterDTO.getType().equalsIgnoreCase("income")) {
+            var incomes = incomeService.filterIncomes(startDate, endDate, keyword, sort);
+            List<Map<String, Object>> result = incomes.stream().map(income -> {
+                Map<String, Object> map = new HashMap<>();
+                map.put("id", income.getId());
+                map.put("name", income.getName());
+                map.put("categoryName", income.getCategoryName());
+                map.put("amount", income.getAmount());
+                map.put("date", income.getDate());
+                map.put("icon", income.getIcon());
+                map.put("type", "income");
+                return map;
+            }).toList();
+
+            return ResponseEntity.ok(result);
+        } else if (filterDTO.getType().equalsIgnoreCase("expense")) {
+            var expenses = expenseService.filterExpenses(startDate, endDate, keyword, sort);
+            List<Map<String, Object>> result = expenses.stream().map(expense -> {
+                Map<String, Object> map = new HashMap<>();
+                map.put("id", expense.getId());
+                map.put("name", expense.getName());
+                map.put("categoryName", expense.getCategoryName());
+                map.put("amount", expense.getAmount());
+                map.put("date", expense.getDate());
+                map.put("icon", expense.getIcon());
+                map.put("type", "expense");
+                return map;
+            }).toList();
+
+            return ResponseEntity.ok(result);
+        } else {
+            return ResponseEntity.badRequest().body("Invalid type specified");
+        }
     }
 }

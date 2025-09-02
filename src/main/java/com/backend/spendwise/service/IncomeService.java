@@ -27,9 +27,12 @@ public class IncomeService {
     public List<IncomeDTO> readIncomesForCurrentMonth() {
         ProfileEntity profileEntity = profileService.getCurrentProfile();
 
-        LocalDate now = LocalDate.now();
-        LocalDate startDate = now.withDayOfMonth(1);
-        LocalDate endDate = now.withDayOfMonth(now.lengthOfMonth());
+        // LocalDate now = LocalDate.now();
+        // LocalDate startDate = now.withDayOfMonth(1);
+        // LocalDate endDate = now.withDayOfMonth(now.lengthOfMonth());
+
+        LocalDate startDate = LocalDate.of(2000, 1, 1);
+        LocalDate endDate = LocalDate.now();
 
         List<IncomeEntity> incomeList = incomeRepository.findAllByProfileIdAndDateBetween(profileEntity.getId(), startDate, endDate);
 
